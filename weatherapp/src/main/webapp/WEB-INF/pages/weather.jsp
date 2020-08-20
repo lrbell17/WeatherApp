@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="com.weatherapp.model.WeatherData"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +20,18 @@
 	</style>
 </head>
 <body>
-	<c:out value="${greeting}"/> <hr>
-	<c:out value="${response}"/> <hr>
-	<a href="/welcome"> Back to home page</a>
+	<h5><c:out value="${greeting}"/></h5> <hr>
+	
+	<strong>Current Conditions:</strong>  <c:out value="${weatherData.description}"/> <br>
+	<strong>Current Temperature:</strong> <c:out value="${weatherData.currentTemp}"/> <span>&#176;</span>F <br>
+	<strong>Feels Like:</strong> <c:out value="${weatherData.feelsLike}"/> <span>&#176;</span>F <br>
+	<strong>High:</strong> <c:out value="${weatherData.maxTemp}"/> <span>&#176;</span>F <br>
+	<strong>Low:</strong> <c:out value="${weatherData.minTemp}"/> <span>&#176;</span>F <br>
+	<strong>Air Pressure:</strong> <c:out value="${weatherData.pressure/10}"/> kPa<br>
+	<strong>Humidity:</strong> <c:out value="${weatherData.humidity}"/>% <br>
+	<strong>Wind Speed:</strong> <c:out value="${weatherData.windSpeed}"/> mph<br>
+	
+	 <hr>
+	<a href="/weather"> Back to home page</a>
 </body>
 </html>

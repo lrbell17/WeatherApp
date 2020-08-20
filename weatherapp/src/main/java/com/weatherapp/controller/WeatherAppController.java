@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.weatherapp.model.WeatherData;
 import com.weatherapp.service.ExchangeService;
 import com.weatherapp.service.LocationService;
 import com.weatherapp.service.UtilService;
@@ -23,7 +24,7 @@ public class WeatherAppController {
 	@Autowired
 	UtilService utilService;
 	
-	@GetMapping("/welcome")
+	@GetMapping("/weather")
 	public String getLocationForm(ModelMap model) {
 		
 		return "locationform";
@@ -42,14 +43,14 @@ public class WeatherAppController {
 			String greeting = utilService.getGreeting(city, state, country);
 			model.put("greeting", greeting);
 			
-			//
 			try {
-				String response = exchangeService.callOpenWeather(city, state, country);
-				model.put("response", response);
+				WeatherData weatherData = exchangeService.callOpenWeather(city, state, country);
+				model.put("weatherData", weatherData);
 				return "weather";
 			}
 			catch (Exception e) {
 				model.put("errorMessage", "Error! We couldn't find the city you were looking for.");
+				e.printStackTrace();
 				return "locationform";
 			}
 		}
