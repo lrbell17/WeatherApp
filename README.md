@@ -1,4 +1,4 @@
-# WeatherApp
+# WeatherApp-Spring-Boot
 
 A Spring Boot REST application that consumes the OpenWeatherMap API to provide current weather data based on location.  
 A user interface is provided with JSP/Bootstrap so the user can enter the details on their location, then the OpenWeatherApp API is called, 
